@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.emos.wx.db.dao.TbRoleMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.emos.wx.db.bean.TbRole">
+            <id property="id" column="id" jdbcType="OTHER"/>
+            <result property="roleName" column="role_name" jdbcType="VARCHAR"/>
+            <result property="permissions" column="permissions" jdbcType="OTHER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,role_name,permissions
+    </sql>
+</mapper>

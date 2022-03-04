@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.emos.wx.db.dao.TbModuleMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.emos.wx.db.bean.TbModule">
+            <id property="id" column="id" jdbcType="OTHER"/>
+            <result property="moduleCode" column="module_code" jdbcType="VARCHAR"/>
+            <result property="moduleName" column="module_name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,module_code,module_name
+    </sql>
+</mapper>

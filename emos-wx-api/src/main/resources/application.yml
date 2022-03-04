@@ -1,0 +1,122 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    threads:
+      max: 200
+      min-spare: 30
+    connection-timeout: 5000ms
+  port: 8080
+  servlet:
+    context-path: /emos-wx-api
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/emos?serverTimezone=UTC
+      username: root
+      password: abc123456
+      initial-size: 8
+      max-active: 16
+      min-idle: 8
+      max-wait: 60000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+
+  redis:
+    database: 0
+    host: 192.168.150.135
+    port: 6379
+    jedis:
+      pool:
+        max-active: 1000
+        max-wait: -1ms
+        max-idle: 16
+        min-idle: 8
+  mail:
+      default-encoding: UTF-8
+      host: smtp.163.com
+      username: lxj990212@163.com
+      password: lxj990212.
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: emos
+      authentication-database: admin
+      username: admin
+      password: abc123456
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+mybatis-plus:
+  global-config:
+    db-config:
+#      设置对应的数据库表明前缀
+      table-prefix: tb_
+#      设置id主键自增
+      id-type: auto
+#      设置指定的xml位置
+  mapper-locations: classpath*:mapper/*.xml
+#     设置别名
+  type-aliases-package: com.example.emos.wx.db.bean
+  configuration:
+#    输出日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    驼峰命名
+    map-underscore-to-camel-case: true
+
+
+logging:
+  level:
+    root: info
+    com.example.emos.wx.db.dao : warn
+  pattern:
+    console: "%d{HH:mm:ss}  %-5level  %msg%n"
+
+
+#定义秘钥和过期时间
+emos:
+  jwt:
+    #密钥
+    secret: abc123456
+    #令牌过期时间（天）
+    expire: 5
+    #令牌缓存时间（天数）
+    cache-expire: 10
+
+  face:
+    createFaceModelUrl: http://192.168.150.135:3000/create_face_model
+    checkinUrl: http://192.168.150.135:3000/checkin
+
+  email:
+    system: lxj990212@163.com
+    hr: lxj990212@126.com
+
+  code: F117A1BC3464E542
+
+  image-folder: D:/emos/image
+
+  recieveNotify: http://192.168.0.100:8080/emos-wx-api/meeting/recieveNotify
+
+  workflow:
+    url: http://192.168.150.135:9090/emos-workflow
+wx:
+  app-id: wx72cb83c98b217073
+  app-secret: aafde67e4db284323205ea0984560e8f
+
+trtc:
+  appid: 1400632298
+  key: a1fd9803abec90ad69ace77efbc1503bbfbf6519008c5562bbd7fbfe11fd18fd
+  expire: 86400
+
+
+
+
+
+
+

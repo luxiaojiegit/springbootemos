@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.emos.wx.db.dao.TbFaceModelMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.emos.wx.db.bean.TbFaceModel">
+            <id property="id" column="id" jdbcType="OTHER"/>
+            <result property="userId" column="user_id" jdbcType="OTHER"/>
+            <result property="faceModel" column="face_model" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,face_model
+    </sql>
+
+    <select id="searchFaceModel" parameterType="int" resultType="String">
+        SELECT face_model FROM tb_face_model
+        WHERE user_id = #{userId}
+    </select>
+
+    <insert id="insertFaceModelEntity" parameterType="com.example.emos.wx.db.service.impl.TbFaceModelServiceImpl">
+        INSERT INTO tb_face_model
+        SET user_id = #{userId},
+            face_model = #{faceModel}
+    </insert>
+
+    <delete id="deleteFaceModel" parameterType="int">
+        DELETE FROM tb_face_model
+        WHERE user_id=#{userId}
+    </delete>
+</mapper>

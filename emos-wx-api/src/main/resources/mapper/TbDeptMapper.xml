@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.emos.wx.db.dao.TbDeptMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.emos.wx.db.bean.TbDept">
+            <id property="id" column="id" jdbcType="OTHER"/>
+            <result property="deptName" column="dept_name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,dept_name
+    </sql>
+
+    <select id="searchDeptMembers" parameterType="String" resultType="HashMap">
+        SELECT
+        d.id,
+        d.dept_name AS deptName,
+        COUNT(u.id) AS count
+        FROM tb_dept d LEFT JOIN tb_user u ON u.dept_id=d.id AND u.status=1
+        <if test="keyword!=null">
+            WHERE u.name LIKE '%${keyword}%'
+        </if>
+        GROUP BY d.id
+    </select>
+</mapper>
